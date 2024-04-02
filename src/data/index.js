@@ -1,4 +1,4 @@
-export const marquesModels = {
+const marquesModels = {
   ac: {
     ac3000me: "3000 ME",
     ac428: "428",
@@ -916,3 +916,6 @@ export const marquesModels = {
   //   volvo: "Volvo",
   //   willys: "Willys",
 };
+
+window.getModelByMarque = (marque) =>
+  marquesModels[marque] || "Marque not found";
