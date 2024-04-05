@@ -3530,12 +3530,12 @@ window.getModelByMarque = (marque) =>
 
     document
       .getElementById("wf-form-Sell-car")
-      .addEventListener("submit", function (event) {
-        checkInputs(event);
+      .addEventListener("submit", function () {
+        checkInputs();
       });
 
-    function checkInputs(e) {
-      e.preventDefault();
+    function checkInputs() {
+
       const inputKilo = document.getElementById("Entrer-le-kilom-trage").value;
       const marque =
         marqueSelect.value.toLowerCase() || otherMarque.value.toLowerCase();
