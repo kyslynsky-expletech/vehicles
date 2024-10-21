@@ -3627,11 +3627,13 @@ const vehicules = [
   },
 ];
 
-document
-  .getElementById("wf-form-Sell-car")
-  .addEventListener("submit", function () {
+const sellFormRef = document.getElementById("wf-form-Sell-car");
+
+if (sellFormRef) {
+  sellFormRef.addEventListener("submit", function () {
     checkInputs();
   });
+}
 
 function checkInputs() {
   const inputKilo = document.getElementById("Entrer-le-kilom-trage").value;
@@ -3640,6 +3642,13 @@ function checkInputs() {
   const modele =
     modeleSelect.value.toLowerCase() || otherMarque.value.toLowerCase();
   const inputAnnee = document.getElementById("Ann-e-2").value;
+
+  const fullname = `${document.getElementById("Nom").value} ${
+    document.getElementById("Pr-nom").value
+  }`;
+  const email = document.getElementById("Email-2").value;
+  const phone = document.getElementById("Phone-number-2").value;
+  const postalcode = document.getElementById("Code-Postal").value;
 
   vehicules.forEach(function (vehicule) {
     if (marque === vehicule["Marque"].toLowerCase()) {
@@ -3681,17 +3690,38 @@ function checkInputs() {
   if (Matches === 1) {
     console.log(Matches);
     console.log("Congratulations! All criteria match for 1 car.");
-    dataLayer.push({ event: "interesting", value: "YES interesting" });
+    dataLayer.push({
+      event: "interesting",
+      value: "YES interesting",
+      fullname,
+      phone,
+      email,
+      postalcode,
+    });
   }
   //if founded 0 car
   if (Matches < 1) {
     console.log("Not interesting");
-    dataLayer.push({ event: "not interesting", value: "NOT interesting" });
+    dataLayer.push({
+      event: "not interesting",
+      value: "NOT interesting",
+      fullname,
+      phone,
+      email,
+      postalcode,
+    });
   }
   //If founded more than 1 car
   if (Matches > 1) {
     console.log("Congratulations! All criteria match for More than 1 car");
-    dataLayer.push({ event: "interesting", value: "YES interesting" });
+    dataLayer.push({
+      event: "interesting",
+      value: "YES interesting",
+      fullname,
+      phone,
+      email,
+      postalcode,
+    });
   }
 }
 
