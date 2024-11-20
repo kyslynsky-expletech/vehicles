@@ -3643,9 +3643,8 @@ function checkInputs() {
     modeleSelect.value.toLowerCase() || otherMarque.value.toLowerCase();
   const inputAnnee = document.getElementById("Ann-e-2").value;
 
-  const fullname = `${document.getElementById("Nom").value} ${
-    document.getElementById("Pr-nom").value
-  }`;
+  const name = document.getElementById("Nom").value;
+  const surname = document.getElementById("Pr-nom").value;
   const email = document.getElementById("Email-2").value;
   const phone = document.getElementById("Phone-number-2").value;
   const postalcode = document.getElementById("Code-Postal").value;
@@ -3693,7 +3692,8 @@ function checkInputs() {
     dataLayer.push({
       event: "interesting",
       value: "YES interesting",
-      fullname,
+      name,
+      surname,
       phone,
       email,
       postalcode,
@@ -3705,7 +3705,8 @@ function checkInputs() {
     dataLayer.push({
       event: "not interesting",
       value: "NOT interesting",
-      fullname,
+      name,
+      surname,
       phone,
       email,
       postalcode,
@@ -3717,7 +3718,8 @@ function checkInputs() {
     dataLayer.push({
       event: "interesting",
       value: "YES interesting",
-      fullname,
+      name,
+      surname,
       phone,
       email,
       postalcode,
