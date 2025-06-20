@@ -2138,7 +2138,6 @@ const marquesModels = {
 window.getModelByMarque = (marque) =>
   marquesModels[marque] || "Marque not found";
 
-let Matches = 0;
 const vehicules = [
   {
     Marque: "fiatabarth",
@@ -3627,19 +3626,23 @@ const vehicules = [
   },
 ];
 
-const sellFormRef = document.getElementById("wf-form-Formulaire-Vendeur");
+document.addEventListener("DOMContentLoaded", function () {
+  const sellFormRef = document.getElementById("wf-form-Formulaire-Vendeur");
 
-if (sellFormRef) {
-  sellFormRef.addEventListener("submit", function () {
-    checkInputs();
-  });
-}
+  if (sellFormRef) {
+    sellFormRef.addEventListener("submit", function () {
+      checkInputs();
+    });
+  }
+});
 
+let Matches = 0;
 function checkInputs() {
-  const marque = document.getElementById("vendre-marque").value;
-  const modele = document.getElementById("vendre-modele").value;
-  const inputAnnee = document.getElementById("vendre-annee").value;
-  const inputKilo = document.getElementById("vendre-kilometrage").value;
+  Matches = 0;
+  const marque = document.getElementById("vendre-marque").value.toLowerCase();
+  const modele = document.getElementById("vendre-modele").value.toLowerCase();
+  const inputAnnee = Number(document.getElementById("vendre-annee").value);
+  const inputKilo = Number(document.getElementById("vendre-kilometrage").value);
 
   const name = document.getElementById("vendre-nom").value;
   const surname = document.getElementById("vendre-prenom").value;
@@ -3649,8 +3652,6 @@ function checkInputs() {
 
   vehicules.forEach(function (vehicule) {
     if (marque === vehicule["Marque"].toLowerCase()) {
-      console.log("+1 Entrer-la-marque-2");
-      //Matches += 1;
       if (
         vehicule["Critère Modèle"] === "matchAll" ||
         (vehicule["Critère Modèle"] === "contains" &&
@@ -3662,21 +3663,28 @@ function checkInputs() {
         (vehicule["Critère Modèle"] === "endsWith" &&
           modele.endsWith(vehicule["Modèle"].toLowerCase()))
       ) {
-        console.log("+1 Mod-le-Version-2");
-        // Matches += 1;
-        if (
-          inputAnnee !== "" &&
-          (vehicule["Critère année"] === "lessThan" ||
-            vehicule["Critère année"] === "") &&
-          (inputAnnee >= vehicule["Année"] || vehicule["Année"] === "Null")
+        console.log("+1 Modele");
+        let yearMatch = false;
+        if (vehicule["Critère année"] === "" || vehicule["Année"] === null) {
+          yearMatch = true;
+        } else if (
+          vehicule["Critère année"] === "lessThan" &&
+          inputAnnee <= vehicule["Année"]
         ) {
-          // Matches += 1;
-          console.log("+1 Ann-e-2");
+          yearMatch = true;
+        } else if (
+          vehicule["Critère année"] === "greaterThan" &&
+          inputAnnee > vehicule["Année"]
+        ) {
+          yearMatch = true;
+        }
+        if (yearMatch) {
+          console.log("+1 Anne");
           if (
             vehicule["Critère Kilométrage"] === "lessThan" &&
             inputKilo <= vehicule["Kilométrage"]
           ) {
-            console.log("+1 Entrer-le-kilom-trage-2");
+            console.log("+1 kilometrage");
             Matches += 1;
           }
         }
