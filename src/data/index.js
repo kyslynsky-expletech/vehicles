@@ -3627,7 +3627,7 @@ const vehicules = [
   },
 ];
 
-const sellFormRef = document.getElementById("wf-form-Sell-car");
+const sellFormRef = document.getElementById("wf-form-Formulaire-Vendeur");
 
 if (sellFormRef) {
   sellFormRef.addEventListener("submit", function () {
@@ -3636,18 +3636,16 @@ if (sellFormRef) {
 }
 
 function checkInputs() {
-  const inputKilo = document.getElementById("Entrer-le-kilom-trage").value;
-  const marque =
-    marqueSelect.value.toLowerCase() || otherMarque.value.toLowerCase();
-  const modele =
-    modeleSelect.value.toLowerCase() || otherMarque.value.toLowerCase();
-  const inputAnnee = document.getElementById("Ann-e-2").value;
+  const marque = document.getElementById("vendre-marque").value;
+  const modele = document.getElementById("vendre-modele").value;
+  const inputAnnee = document.getElementById("vendre-annee").value;
+  const inputKilo = document.getElementById("vendre-kilometrage").value;
 
-  const name = document.getElementById("Nom").value;
-  const surname = document.getElementById("Pr-nom").value;
-  const email = document.getElementById("Email-2").value;
-  const phone = document.getElementById("Phone-number-2").value;
-  const postalcode = document.getElementById("Code-Postal").value;
+  const name = document.getElementById("vendre-nom").value;
+  const surname = document.getElementById("vendre-prenom").value;
+  const phone = document.getElementById("vendre-telephone").value;
+  const email = document.getElementById("vendre-email").value;
+  const postalcode = document.getElementById("vendre-codePostal").value;
 
   vehicules.forEach(function (vehicule) {
     if (marque === vehicule["Marque"].toLowerCase()) {
@@ -3726,36 +3724,3 @@ function checkInputs() {
     });
   }
 }
-
-/* 
-    } else if (inputMarque != vehicule["Marque"].toLowerCase()) {
-      console.log("Not interesting Entrer-la-marque-2");
-    }
-
-    if (
-      vehicule["Critère Modèle"] === "matchAll" ||
-      (vehicule["Critère Modèle"] === "contains" && inputModele.includes(vehicule["Modèle"].toLowerCase())) ||
-      (vehicule["Critère Modèle"] === "isExactly" && inputModele === vehicule["Modèle"].toLowerCase()) ||
-      (vehicule["Critère Modèle"] === "startsWith" && inputModele.startsWith(vehicule["Modèle"].toLowerCase())) ||
-      (vehicule["Critère Modèle"] === "endsWith" && inputModele.endsWith(vehicule["Modèle"].toLowerCase()))
-    ) {
-      console.log("+1 Mod-le-Version-2");
-      Matches += 1;
-    } else if (
-      vehicule["Critère Modèle"] != "matchAll" ||
-      (vehicule["Critère Modèle"] != "contains" && inputModele.includes(vehicule["Modèle"].toLowerCase())) ||
-      (vehicule["Critère Modèle"] != "isExactly" && inputModele != vehicule["Modèle"].toLowerCase()) ||
-      (vehicule["Critère Modèle"] != "startsWith" && inputModele.startsWith(vehicule["Modèle"].toLowerCase())) ||
-      (vehicule["Critère Modèle"] != "endsWith" && inputModele.endsWith(vehicule["Modèle"].toLowerCase()))
-    ) {
-      console.log("Not interesting Mod-le-Version-2");
-    }
-
-    else if (inputAnnee < vehicule["Année"]) {
-      console.log("Not interesting Ann-e-2");
-    }
-   else if (inputKilo > vehicule["Kilométrage"]) {
-      console.log("Not interesting Entrer-le-kilom-trage-2");
-    }
-  });
-*/
